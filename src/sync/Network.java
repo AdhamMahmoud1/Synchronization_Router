@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Network {
      public static void main(String[] args) throws InterruptedException {
-        int  numberOfConnections, numberOfDecives;
+        int  numberOfConnections, numberOfDevices;
         ArrayList<Device> devices = new ArrayList<>();
         Scanner input = new Scanner(System.in);
 
@@ -14,11 +14,11 @@ public class Network {
         Router router = new Router(numberOfConnections);
 
         System.out.println("What is number of devices Clients want to connect?");
-        numberOfDecives = input.nextInt();
+        numberOfDevices = input.nextInt();
 
         input.nextLine();
 
-        for (int i = 0; i < numberOfDecives; i++) {
+        for (int i = 0; i < numberOfDevices; i++) {
             System.out.println("Enter device name:");
             String deviceName = input.nextLine();
             System.out.println("Enter device type:");
@@ -27,7 +27,7 @@ public class Network {
             devices.add(newDevice);
         }
 
-        for (int i = 0; i < numberOfDecives; i++) {
+        for (int i = 0; i < numberOfDevices; i++) {
             Thread.sleep(1000);
             devices.get(i).start();
         }

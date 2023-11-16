@@ -4,10 +4,12 @@ import java.util.concurrent.Semaphore;
 
 public class Router {
     private Boolean[] connections;
-    private int maxConnections, currentConnections;
+    private int maxConnections;
+    private static int currentConnections = 0;
+
     private Network network;
     private Semaphore semaphore;
-    
+
     public Router(int maxConnections) {
         this.maxConnections = maxConnections;
         this.currentConnections = 0;
@@ -21,7 +23,6 @@ public class Router {
         for (int i = 0; i < maxConnections; i++) {
             if (!connections[i]) {
                 currentConnections++;
-                device.ID = i + 1;
                 connections[i] = true;
                 Thread.sleep(1000);
                 break;
@@ -31,14 +32,19 @@ public class Router {
     }
 
     public void disconnect(Device device) {
-        connections[currentConnections] = false;
-        currentConnections--;
-        semaphore.release();
-        System.out.println(device.getDeviceName() + " (" + device.getDeviceType() + ")" + " is logged out");
+            connections[device.ID - 1] = false;
+            currentConnections--;
+            semaphore.release();
+            System.out.println(device.getDeviceName() + " (" + device.getDeviceType() + ")" + " is logged out");
+
     }
+
+
 
     public int getCurrentConnections() {
         return currentConnections;
     }
-    
+
+
+
 }
