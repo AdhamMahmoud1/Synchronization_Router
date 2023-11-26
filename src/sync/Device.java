@@ -1,58 +1,35 @@
 package sync;
 
-public class Device extends Thread{
-    private String name;
-    private String type;
-    public int ID;
+public class Device extends Thread {
+   public String name, type;
+   public int connectionID;
+   public  Router router;
 
-    public static int sharedID = 1;
-    private Router router;
-
-    public Device(String name, String type, int maxConnections) {
+   public Device(String name, String type, Router router) {
         this.name = name;
         this.type = type;
-        this.router = new Router(maxConnections);
-        this.ID = sharedID;
-
-    }
-
-    public static void incrementID() {
-        sharedID++;
+        this.router = router;
+        connectionID = 1;
     }
 
     @Override
     public void run() {
         try {
-            router.connect(this);
-            System.out.println("Connection " + sharedID + ": " + name + " Arrived");
-            System.out.println("Connection " + sharedID + ": " + name + " Occupied");
-            incrementID();
+            router.semaphore.wait(this);
+            connectionID = router.connect(this);
+            System.out.println("Connection " + connectionID + ": " + name + " Occupied");
             activity();
             router.disconnect(this);
-        } 
-        catch (InterruptedException e) {
+            router.semaphore.signal();
+
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public void activity() {
-        System.out.println(name + " (" + type + ")" + " is performing an activity");
 
     }
-    
-    public String getDeviceName() {
-        return name;
+
+    public void activity() throws InterruptedException {
+        System.out.println("Connection " + connectionID + ": " + name + " Performs online activity");
+        sleep(2000);
     }
-
-    public String getDeviceType() {
-        return type;
-    }
-
-    public Router getRouter() {
-        return router;
-    }
-
-
-
-
 }
