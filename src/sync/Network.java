@@ -23,7 +23,7 @@ public class Network {
             String deviceName = input.nextLine();
             System.out.println("Enter device type:");
             String deviceType = input.nextLine();
-            Device newDevice = new Device(deviceName, deviceType, numberOfConnections);
+            Device newDevice = new Device(deviceName, deviceType, router);
             devices.add(newDevice);
         }
 
@@ -31,6 +31,7 @@ public class Network {
             Thread.sleep(1000);
             devices.get(i).start();
         }
-    }
 
+        input.close();
+    }
 }
