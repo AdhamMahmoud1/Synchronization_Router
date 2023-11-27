@@ -1,12 +1,13 @@
 package sync;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
 public class Network {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         int  numberOfConnections, numberOfDecives;
         ArrayList<Device> devices = new ArrayList<>();
 
