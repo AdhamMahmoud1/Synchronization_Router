@@ -15,7 +15,7 @@ public class Router {
         this.maxDevices = maxDevices;
         semaphore = new CounterSemaphore(maxDevices);
         connected = new boolean[maxDevices];
-        writeToLog = new FileWriter("C:\\Users\\DELL\\IdeaProjects\\Synchronization_Router\\log.txt", true);
+        writeToLog = new FileWriter("output.txt", true);
 
     }
 

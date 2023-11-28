@@ -1,5 +1,7 @@
 package sync;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,13 +24,17 @@ public class Network {
 
         for (int i = 0; i < numberOfDecives; i++) {
             System.out.println("Enter Device Name and Type: ");
-            Device newDevice = new Device(input.next(),input.next(), router);
+            Device newDevice = new Device(input.next(), input.next(), router);
             devices.add(newDevice);
         }
-
+        FileWriter writeToLog = new FileWriter("output.txt", true);
+        BufferedWriter writer = new BufferedWriter(writeToLog);
+        writer.newLine();
+        writer.close();
         for (int i = 0; i < numberOfDecives; i++) {
             sleep(100);
             devices.get(i).start();
         }
+        input.close();
     }
 }

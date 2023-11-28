@@ -15,7 +15,7 @@ public class Device extends Thread {
         this.type = type;
         this.router = router;
         connectionID = 1;
-        writeToLog = new FileWriter("C:\\Users\\DELL\\IdeaProjects\\Synchronization_Router\\log.txt", true);
+        writeToLog = new FileWriter("output.txt", true);
 
    }
 

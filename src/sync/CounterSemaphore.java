@@ -11,7 +11,7 @@ public class CounterSemaphore {
     }
 
     public synchronized void wait(Device device) throws InterruptedException, IOException {
-        FileWriter writeToLog = new FileWriter("C:\\Users\\DELL\\IdeaProjects\\Synchronization_Router\\log.txt", true);
+        FileWriter writeToLog = new FileWriter("output.txt", true);
         value--;
         if (value < 0) {
 
