@@ -20,10 +20,11 @@ public class CounterSemaphore {
 
         }
         else{
-            writeToLog.write( device.name +" (" + device.type + ")" +" arrived\n");
+            writeToLog.write(device.name + " (" + device.type + ")" + " arrived\n");
+            device.router.connect(device);
         }
 
-        device.router.connect(device);
+        
         writeToLog.flush();
         writeToLog.close();
     }

@@ -26,6 +26,7 @@ public class Router {
                 device.connectionID = i + 1;
                 connected[i] = true;
                 sleep((int) (Math.random() * 100));
+                writeToLog.write("Connection " + device.connectionID + ": " + device.name + " Logged in\n");
                 break;
             }
         }
