@@ -19,9 +19,9 @@ public class Router {
 
     }
 
-    public synchronized int connect(Device device) throws InterruptedException {
+    public synchronized int connect(Device device) throws InterruptedException, IOException {
         for (int i = 0; i < maxDevices; i++) {
-            if(!connected[i]){
+            if (!connected[i]) {
                 currentConnectedDevices++;
                 device.connectionID = i + 1;
                 connected[i] = true;
@@ -37,6 +37,7 @@ public class Router {
         connected[device.connectionID-1] = false;
         notify();
         writeToLog.write("Connection " + device.connectionID + ": " + device.name + " Logged out\n");
+        writeToLog.flush();
     }
 
 }

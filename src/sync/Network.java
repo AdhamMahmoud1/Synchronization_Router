@@ -32,7 +32,7 @@ public class Network {
         writer.newLine();
         writer.close();
         for (int i = 0; i < numberOfDecives; i++) {
-            sleep(100);
+            sleep((int) (Math.random() * 100));
             devices.get(i).start();
         }
         input.close();
