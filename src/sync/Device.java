@@ -39,6 +39,7 @@ public class Device extends Thread {
     }
 
     public void activity() throws InterruptedException, IOException {
+        writeToLog.write("Connection " + connectionID + ": " + name + " login\n");
         writeToLog.write("Connection " + connectionID + ": " + name + " Performs online activity\n");
         sleep(2000);
         try {
